@@ -55,30 +55,47 @@ class FilmController extends Controller
     /**
      * Lista TODAS las películas o filtra x año o categoría.
      */
-    public function listFilms($year = null, $genre = null)
+    public function listFilmsByYear($year = null)
     {
         $films_filtered = [];
+        $title = "Listado de películas por año";
 
-        $title = "Listado de todas las pelis";
         $films = FilmController::readFilms();
 
-        //if year and genre are null
-        if (is_null($year) && is_null($genre))
-            return view('films.list', ["films" => $films, "title" => $title]);
+        if (is_null($year)) {
+            $title = "Listado de todas las películas (sin filtrar por año)";
+            return view("films.list", ["films" => $films, "title" => $title]);
+        }
 
-        //list based on year or genre informed
         foreach ($films as $film) {
-            if ((!is_null($year) && is_null($genre)) && $film['year'] == $year){
-                $title = "Listado de todas las pelis filtrado x año";
-                $films_filtered[] = $film;
-            }else if((is_null($year) && !is_null($genre)) && strtolower($film['genre']) == strtolower($genre)){
-                $title = "Listado de todas las pelis filtrado x categoria";
-                $films_filtered[] = $film;
-            }else if(!is_null($year) && !is_null($genre) && strtolower($film['genre']) == strtolower($genre) && $film['year'] == $year){
-                $title = "Listado de todas las pelis filtrado x categoria y año";
+            if ($film['year'] == $year) {
                 $films_filtered[] = $film;
             }
         }
+
+        $title = "Listado de películas del año $year";
+        return view("films.list", ["films" => $films_filtered, "title" => $title]);
+    }
+
+    public function listFilmsByGenre($genre = null)
+    {
+        $films_filtered = [];
+        $title = "Listado de películas por género";
+
+        $films = FilmController::readFilms();
+
+        if (is_null($genre)) {
+            $title = "Listado de todas las películas (sin filtrar por género)";
+            return view("films.list", ["films" => $films, "title" => $title]);
+        }
+
+        foreach ($films as $film) {
+            if (strtolower($film['genre']) == strtolower($genre)) {
+                $films_filtered[] = $film;
+            }
+        }
+
+        $title = "Listado de películas del género $genre";
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
     }
 }

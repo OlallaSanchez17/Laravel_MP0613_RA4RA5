@@ -34,6 +34,12 @@ Route::middleware('year')->group(function() {
         //Contar peliculas
         Route::get('/countFilms', [FilmController::class, 'countFilms']);
 
+        //Peliculas por año
+        Route::get('/sortFilms', [FilmController::class, 'sortFilms']);
+
+
+
+
     });
 });
 

@@ -55,6 +55,8 @@ class FilmController extends Controller
     /**
      * Lista TODAS las películas o filtra x año o categoría.
      */
+
+    //Listar por genero y año
     public function listFilmsByYear($year = null)
     {
         $films_filtered = [];
@@ -99,11 +101,29 @@ class FilmController extends Controller
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
     }
 
+    //contar pelis
     public function countFilms()
     {
         $films = self::readFilms(); 
         $count = count($films);
 
         return "Total de películas registradas: $count";
+    }
+
+    //peliculas por año
+    public function sortFilms()
+    {
+        $films = self::readFilms();
+
+        usort($films, function($a, $b) {
+            return $b['year'] <=> $a['year'];
+        });
+
+        $output = "Películas ordenadas por año (de más nueva a más antigua):\n\n";
+        foreach ($films as $film) {
+            $output .= $film['name'] . " — " . $film['year'] . "\n";
+        }
+
+        return nl2br($output);
     }
 }

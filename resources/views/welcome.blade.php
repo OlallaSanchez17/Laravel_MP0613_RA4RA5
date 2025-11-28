@@ -20,10 +20,15 @@
         <li><a href=/filmout/newFilms>Pelis nuevas</a></li>
         <li><a href=/filmout/films>Pelis</a></li>
 
+        {{-- listar por genero y año --}}
         <li><a href="/filmout/filmsByYear">Pelis por año</a></li>
         <li><a href="/filmout/filmsByGenre">Pelis por género</a></li>
 
+        {{-- contar peliculas --}}
         <li><a href="/filmout/countFilms">Contador de Películas</a></li>
+
+        {{-- peliculas ordenadas por años  --}}
+        <li><a href="/filmout/sortFilms">Películas Ordenadas</a></li>
 
     </ul>
     <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->

@@ -4,6 +4,7 @@ use App\Http\Controllers\FilmController;
 use App\Http\Middleware\ValidateYear;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +27,13 @@ Route::middleware('year')->group(function() {
         Route::get('newFilms/{year?}',[FilmController::class, "listNewFilms"])->name('newFilms');
         Route::get('films/{year?}/{genre?}',[FilmController::class, "listFilms"])->name('listFilms');
 
+        //Lista peliculas por genero y año
         Route::get('filmsByYear/{year?}', [FilmController::class, "listFilmsByYear"])->name('filmsByYear');
         Route::get('filmsByGenre/{genre?}', [FilmController::class, "listFilmsByGenre"])->name('filmsByGenre');
+
+        //Contar peliculas
+        Route::get('/countFilms', [FilmController::class, 'countFilms']);
+
     });
 });
 

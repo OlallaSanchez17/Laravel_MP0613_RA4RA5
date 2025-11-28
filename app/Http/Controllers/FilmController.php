@@ -98,4 +98,12 @@ class FilmController extends Controller
         $title = "Listado de películas del género $genre";
         return view("films.list", ["films" => $films_filtered, "title" => $title]);
     }
+
+    public function countFilms()
+    {
+        $films = self::readFilms(); 
+        $count = count($films);
+
+        return "Total de películas registradas: $count";
+    }
 }

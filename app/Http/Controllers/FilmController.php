@@ -113,17 +113,20 @@ class FilmController extends Controller
     //peliculas por año
     public function sortFilms()
     {
+        $films_sort = [];
         $films = self::readFilms();
 
         usort($films, function($a, $b) {
             return $b['year'] <=> $a['year'];
         });
 
-        $output = "Películas ordenadas por año (de más nueva a más antigua):\n\n";
-        foreach ($films as $film) {
-            $output .= $film['name'] . " — " . $film['year'] . "\n";
-        }
+        $films_sort = $films;
+        $title = "Peliculas ordenadas";
+        return view("films.list", ["films" => $films_sort, "title" => $title]);
+    }
 
-        return nl2br($output);
+    public function createFilm()
+    {
+        
     }
 }

@@ -37,6 +37,9 @@ Route::middleware('year')->group(function() {
         //Peliculas por año
         Route::get('/sortFilms', [FilmController::class, 'sortFilms']);
 
+        //Crear pelicula
+        Route::get('/createFilm', [FilmController::class, 'createFilm']);
+
 
 
 

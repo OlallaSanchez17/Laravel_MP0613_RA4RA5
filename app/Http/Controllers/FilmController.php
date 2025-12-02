@@ -106,8 +106,9 @@ class FilmController extends Controller
     {
         $films = self::readFilms(); 
         $count = count($films);
+        $title = "Total de películas";
 
-        return "Total de películas registradas: $count";
+        return view('films.count', [ 'count' => $count, 'title' => $title]);     
     }
 
     //peliculas por año
@@ -119,6 +120,7 @@ class FilmController extends Controller
         usort($films, function($a, $b) {
             return $b['year'] <=> $a['year'];
         });
+
 
         $films_sort = $films;
         $title = "Peliculas ordenadas";

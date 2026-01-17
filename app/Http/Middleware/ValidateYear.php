@@ -24,6 +24,7 @@ class ValidateYear
                   return redirect('/');
             }
         }
+
         return $next($request);        
     }
 }

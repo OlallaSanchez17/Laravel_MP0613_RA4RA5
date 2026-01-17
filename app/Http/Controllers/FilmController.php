@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
@@ -9,10 +10,19 @@ class FilmController extends Controller
     /**
      * Read films from storage
      */
-    public static function readFilms(): array {
-        $films = Storage::json('/public/films.json');
-        return $films;
+    public static function readFilms(): array
+    {
+        $jsonFile = __DIR__ . '/films.json';
+
+        if (!file_exists($jsonFile)) {
+            return [];
+        }
+
+        $films = json_decode(file_get_contents($jsonFile), true);
+
+        return is_array($films) ? $films : [];
     }
+
     /**
      * List films older than input year 
      * if year is not infomed 2000 year will be used as criteria
@@ -51,6 +61,26 @@ class FilmController extends Controller
                 $new_films[] = $film;
         }
         return view('films.list', ["films" => $new_films, "title" => $title]);
+    }
+
+    public function listAllFilms()
+    {
+        $title = "Listado de todas las películas";
+       
+        $films = FilmController::readFilms();
+ 
+        if (empty($films)) {
+            $title = "No hay películas disponibles";
+            return view("films.list", [
+                "films" => [],
+                "title" => $title
+            ]);
+        }
+ 
+        return view("films.list", [
+            "films" => $films,
+            "title" => $title
+        ]);
     }
     /**
      * Lista TODAS las películas o filtra x año o categoría.
@@ -127,8 +157,50 @@ class FilmController extends Controller
         return view("films.list", ["films" => $films_sort, "title" => $title]);
     }
 
-    public function createFilm()
-    {
-        
+    public function createFile(Request $request ){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $uploadDir = __DIR__ . '/uploads/';
+    $jsonFile = __DIR__ . '/films.json'; 
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+
+    $films = [];
+    if (file_exists($jsonFile)) {
+        $films = json_decode(file_get_contents($jsonFile), true);
+    }
+
+    foreach ($films as $film) {
+        if (strcasecmp($film['name'], $_POST['name']) === 0) {
+            return view('welcome', [
+                'error' => 'La película ya existe en la lista'
+            ]);
+        }
+    }
+
+    $targetFile = $_POST['img_url'];
+
+    $newFilm = [
+        'name' => $_POST['name'],
+        'year' => (int)$_POST['year'],
+        'genre' => $_POST['genre'],
+        'country' => $_POST['country'],
+        'duration' => $_POST['duration'],
+        'img_url' => $targetFile
+    ];
+
+    $films[] = $newFilm;
+
+    $saved = file_put_contents($jsonFile, json_encode($films, JSON_PRETTY_PRINT));
+
+    if ($saved == false) {
+        return view('welcome', ['error' => 'Error saving the film list']);
+    }
+
+    return $this->listAllFilms();
+    }   
     }
 }
+

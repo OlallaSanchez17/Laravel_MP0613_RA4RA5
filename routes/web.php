@@ -25,7 +25,7 @@ Route::middleware('year')->group(function() {
         // Routes included with prefix "filmout"
         Route::get('oldFilms/{year?}',[FilmController::class, "listOldFilms"])->name('oldFilms');
         Route::get('newFilms/{year?}',[FilmController::class, "listNewFilms"])->name('newFilms');
-        Route::get('films/{year?}/{genre?}',[FilmController::class, "listFilms"])->name('listFilms');
+        Route::get('allFilms/{year?}/{genre?}',[FilmController::class, "listAllFilms"])->name('allFilms');
 
         //Lista peliculas por genero y año
         Route::get('filmsByYear/{year?}', [FilmController::class, "listFilmsByYear"])->name('filmsByYear');
@@ -36,14 +36,14 @@ Route::middleware('year')->group(function() {
 
         //Peliculas por año
         Route::get('/sortFilms', [FilmController::class, 'sortFilms']);
-
-        //Crear pelicula
-        Route::get('/createFilm', [FilmController::class, 'createFilm']);
-
-
-
-
+    
     });
 });
+
+Route::prefix('filmin')->group(function () {
+    Route::post('/add-film', [FilmController::class, 'createFile'])
+        ->name('filmin.addFilm');
+});
+
 
 

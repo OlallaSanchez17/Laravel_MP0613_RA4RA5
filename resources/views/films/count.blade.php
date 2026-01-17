@@ -1,3 +1,6 @@
+@include('partials.header')
+
+@yield('content')
 <h1>{{ $title }}</h1>
 
 @if($count == 0)
@@ -5,3 +8,6 @@
 @else
     <h2>{{ $count }}</h2> 
 @endif
+@include('partials.footer')
+
+@yield('content')

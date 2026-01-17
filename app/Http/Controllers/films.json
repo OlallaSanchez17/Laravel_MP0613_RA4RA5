@@ -40,19 +40,19 @@
         "img_url": "https:\/\/pics.filmaffinity.com\/As_bestas-275688233-large.jpg"
     },
     {
-        "name": "titanic",
-        "year": 1111,
-        "genre": "drama",
+        "name": "Titanic",
+        "year": 1997,
+        "genre": "Romance",
         "country": "USA",
         "duration": "120",
         "img_url": "https:\/\/pics.filmaffinity.com\/titanic-321994924-large.jpg"
     },
     {
-        "name": "pruebas",
+        "name": "pacman",
         "year": 1111,
-        "genre": "drama",
-        "country": "USA",
+        "genre": "arcade",
+        "country": "japon",
         "duration": "120",
-        "img_url": "https:\/\/pics.filmaffinity.com\/titanic-321994924-large.jpg"
+        "img_url": "https:\/\/play-lh.googleusercontent.com\/priMsIloHRuAVUJXfP_aptcRkblBarDNZ1rhvi0hy9Fdf2kefA0XQzZ1byMbtutFoA8"
     }
 ]

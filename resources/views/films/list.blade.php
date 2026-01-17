@@ -1,4 +1,9 @@
-<img src="{{ asset(path: 'img/cine.png') }}" alt="Logo" class="logo">
+<link rel="stylesheet" href="{{ asset(path: 'css/list.css') }}">
+
+@include('partials.header')
+
+@yield('content')
+
 
 <h1>{{$title}}</h1>
 
@@ -28,5 +33,8 @@
             </tr>
         @endforeach
     </table>
+    @include('partials.footer')
+
+    @yield('content')
 </div>
 @endif

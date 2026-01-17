@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <center><img src="{{ asset(path: 'img/cine.png') }}" alt="Logo" class="logo"></center>
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,8 @@
     <!-- Include any additional stylesheets or scripts here -->
 </head>
 
-<body class="container">
+    <body class="container">
+
 
     <h1 class="mt-4">Lista de Peliculas</h1>
     <ul>
@@ -20,18 +22,18 @@
         <li><a href=/filmout/newFilms>Pelis nuevas</a></li>
         <li><a href=/filmout/films>Pelis</a></li>
 
-        {{-- listar por genero y año --}}
-        <li><a href="/filmout/filmsByYear">Pelis por año</a></li>
-        <li><a href="/filmout/filmsByGenre">Pelis por género</a></li>
+            {{-- listar por genero y año --}}
+            <li><a href="/filmout/filmsByYear">Pelis por año</a></li>   
+            <li><a href="/filmout/filmsByGenre">Pelis por género</a></li>
 
-        {{-- contar peliculas --}}
-        <li><a href="/filmout/countFilms">Contador de Películas</a></li>
+            {{-- contar peliculas --}}
+            <li><a href="/filmout/countFilms">Contador de Películas</a></li>
 
-        {{-- peliculas ordenadas por años  --}}
-        <li><a href="/filmout/sortFilms">Películas Ordenadas</a></li>
+            {{-- peliculas ordenadas por años  --}}
+            <li><a href="/filmout/sortFilms">Películas Ordenadas</a></li>
 
-        {{-- Crear pelicula --}}
-        <li><a href="/filmout/createFilm">Crear Pelicula</a></li>
+            {{-- Crear pelicula --}}
+            <li><a href="/filmout/createFilm">Crear Pelicula</a></li>
 
     </ul>
     <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
@@ -41,6 +43,6 @@
 
     <!-- Include any additional HTML or Blade directives here -->
 
-</body>
+    </body>
 
-</html>
+    </html>

@@ -1,3 +1,5 @@
+<img src="{{ asset(path: 'img/cine.png') }}" alt="Logo" class="logo">
+
 <h1>{{$title}}</h1>
 
 @if(empty($films))

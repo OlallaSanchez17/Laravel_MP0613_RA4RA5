@@ -14,11 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+            $faker = Faker::create();
+            $lastInsertedId = DB::table("films")->max("discount_id");
+            for ($i = $lastInsertedId; $i < $lastInsertedId+20; $i++) {
+                DB::table("discounts")->insert(
+                    [
+                        "discount_id" => $i + 1,
+                        "discount_amount" => $faker->randomFloat(2, 1, 100),
+                        "start_date" => $faker->dateTimeBetween("-1 month", "now")->format('Y-m-d'),
+                        "end_date" => $faker->dateTimeBetween("now", "+1 month")->format('Y-m-d'),
+                    ]
+                );
+            }
     }
 }
+    

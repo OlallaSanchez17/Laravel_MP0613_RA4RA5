@@ -13,7 +13,6 @@ class FilmActorSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        // Obtener todos los IDs de películas y actores para asegurar la integridad referencial
         $filmIds = DB::table('films')->pluck('id')->toArray();
         $actorIds = DB::table('actors')->pluck('id')->toArray();
 

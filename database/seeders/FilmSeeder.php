@@ -18,7 +18,7 @@ class FilmSeeder extends Seeder
                 "name" => "pelicula$i",
                 "year" => 2000 + $i,
                 "genre" => "Genero $i",
-                "duration" => "10$i min",
+                "duration" => 100 + $i,
                 "country" => "Pais $i",
                 "img_url" => "img/cine$i.png"
             ));
@@ -26,3 +26,4 @@ class FilmSeeder extends Seeder
         $this->command->info("Mi tabla usuarios ha sido rellenada por defecto");
     }
 }
+    

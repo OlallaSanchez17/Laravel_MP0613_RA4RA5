@@ -16,6 +16,7 @@ class ActorFakeSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        for ($i = 0; $i < 10; $i++) {
             $agency = $faker->company() . " Agency";
             \Log::info("Improvement: Seeding actor with agency: $agency");
 

@@ -20,7 +20,8 @@ class ValidateYear
 
         // in case year is not numeric go to homepage
         if(isset($year)){
-            if(is_null($year) || !is_numeric($year)){
+            if(is_null($year) || !is_numeric($year) || $year < 1900 || $year > 2024){
+                  \Log::error("Invalid year range accessed in middleware: $year");
                   return redirect('/');
             }
         }

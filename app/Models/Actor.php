@@ -12,6 +12,7 @@ protected $fillable = [
     "surname",
     "birthdate",
     "country",
+    "agency",
     "img_url",
 ];
 }

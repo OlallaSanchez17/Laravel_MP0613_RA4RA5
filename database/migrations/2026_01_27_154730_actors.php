@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('surname', 30);
             $table->year('birthdate');
             $table->string('country', 30);
+            $table->string('agency', 50)->nullable();
             $table->string('img_url', 255);
             $table->timestamps();
             });

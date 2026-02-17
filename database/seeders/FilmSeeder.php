@@ -14,9 +14,15 @@ class FilmSeeder extends Seeder
     public function run(): void
     {
         for($i=10; $i<20; $i++){
+            $year = rand(1900, 2024);
+            
+            if ($year < 1900 || $year > 2024) {
+                \Log::error("Year out of range detected in FilmSeeder: $year");
+            }
+
             DB::table('films')->insert(array(
                 "name" => "pelicula$i",
-                "year" => 2000 + $i,
+                "year" => $year,
                 "genre" => "Genero $i",
                 "duration" => 100 + $i,
                 "country" => "Pais $i",

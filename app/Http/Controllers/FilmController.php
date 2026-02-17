@@ -182,9 +182,17 @@ class FilmController extends Controller
 
     $targetFile = $_POST['img_url'];
 
+    $year = (int)$_POST['year'];
+    if ($year < 1900 || $year > 2024) {
+        \Log::error("Attempted to add film with invalid year: $year");
+        return view('welcome', [
+            'error' => 'El año de la película debe estar entre 1900 y 2024'
+        ]);
+    }
+
     $newFilm = [
         'name' => $_POST['name'],
-        'year' => (int)$_POST['year'],
+        'year' => $year,
         'genre' => $_POST['genre'],
         'country' => $_POST['country'],
         'duration' => $_POST['duration'],
